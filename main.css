@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Inline&display=swap');
+@import url('https://fonts.cdnfonts.com/css/lcd');
+
+body{
+    margin: 0;
+    padding: 0;
+    max-width: 1920px;
+    font-family: 'Bungee', cursive;
+    background: no-repeat center center fixed;
+    background-image: radial-gradient(#fdfdfd, #3e3f55);
+
+  
+}
+
+.pageGrid{
+    display: grid;
+    width: 100vw; 
+    min-width: 630px;
+    grid-template-rows: 70px 400px 350px auto;
+    grid-template-areas:
+    "top_title"
+    "middle_sums"
+    "middle_code"
+    "bottom_space";
+}
+
+.top{
+    grid-area: top_title;
+    text-align: center;
+    width: 100%;    
+    font-family: 'Bungee Inline', cursive;
+    font-size:25px;
+    line-height: 0px;
+    color: #e03131;
+    text-shadow: -1px -1px 0 #331d1d, 1px -1px 0 #331d1d, -1px 1px 0 #331d1d, 1px 1px 0 #331d1d;
+}
+
+
+.sumsArea{
+    grid-area: middle_sums;    
+}
+
+.sumLine{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:45px;
+    line-height: 20px;
+    color: #000000;
+    
+}
+.sumLine p{
+    padding-right: 10px;
+}
+
+
+#countDownTimer_container{
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    background-color: black;
+    border: 5px solid #d12323;
+    border-radius: 50px;
+    outline: none;
+    box-shadow: 0 0 10px #b84440;
+    align-items: center;
+    margin: 20px auto auto auto;
+    text-align: center;
+
+  }
+
+  #countDownTimer_p{
+    color: #d12323;
+    font-family: 'LCD', sans-serif;
+    font-size: 150px;
+    text-shadow: 0 0 10px #b84440;
+  }
+
+.codeArea{
+    grid-area: middle_code;
+    width: auto;
+    margin: auto;
+    justify-items: center;
+}
+
+.codeOutput_container{
+    display: inline-flex;
+
+}
+
+.codeOutput{
+    text-align: center;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 50px;
+    font-weight: 600;
+    border-style: solid;
+    background-color: #5c596e;
+    border-radius:60px;
+    line-height: 100px;
+    width: 100px;
+    margin: 0 30px 0 30px;
+}
+
+
+.bottom{
+    grid-area: bottom_space;
+    padding-left: 20px;
+    justify-content: left;
+    width: 100%;    
+    font-family: 'Bungee Inline', cursive;
+    font-size:18px;
+    line-height: 20px;
+    color: #e03131;
+    text-shadow: -1px -1px 0 #331d1d, 1px -1px 0 #331d1d, -1px 1px 0 #331d1d, 1px 1px 0 #331d1d;
+    margin-bottom: 35px;
+}
+
+input[type=number] {
+
+    /* Firefox */
+    -moz-appearance: textfield;
+
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 35px;
+    border-radius: 5px;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+}
+input[type=checkbox]{
+
+    margin-right: 10px;
+
+
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    padding: 10px;
+  }
+  
+  /* Might want to wrap a span around your checkbox text */
+  .checkboxtext
+  {
+    /* Checkbox text */
+    font-size: 110%;
+    display: inline;
+  }
+
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+button{
+    margin-bottom: 25px;
+    background-color: #e03131;
+    font-size: 20px;
+    width: 150px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 14px rgb(5, 5, 5);
+    
+}
+
+
+#launch_button{
+    display: block;
+    height: 150px;
+    border-radius: 75px;
+    margin: 0px auto 0 auto;
+    background-color:green;
+    color: black;
+}
+
+#launch_button:disabled{
+  opacity: 50%;
+  cursor: default;
+  background-color: #e03131;
+}
+
+
+button:focus {
+    outline: none;
+  }
+
+button:hover{
+    opacity: 0.9;
+}
+
+button:disabled{
+    cursor: default;
+    opacity: 50%;
+}
+
+
+button:disabled:active{
+    box-shadow: 0 14px rgb(5, 5, 5);
+    transform: translateY(0px);
+  }
+
+button:active,  .keyBoardActive{
+    opacity: 0.5;
+    box-shadow: 0 2px rgb(5, 5, 5);
+    transform: translateY(13px);
+  }
+
+
+  
+
+
+footer{
+    align-content: center;
+    position: fixed;
+    display: grid;
+    left: 0;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    background-color: rgba(151, 154, 167);
+    font-size: 18px;
+    grid-template-areas: "footer_left footer_middle footer_right";
+    grid-template-columns: 1fr 30px 1fr;
+}
+
+footer p{
+    grid-area: footer_left;
+    text-align: end;
+    margin: 0px; 
+    padding-top: 5px;
+}
+
+.githubLogo{
+    grid-area: footer_middle;
+    height: 20px;
+    justify-self: center;
+    align-self: center;
+}
+
+footer a{
+    grid-area: footer_right;
+    text-align: left;
+    margin: 0px; 
+    padding-top: 5px;
+}
+
+.rocket {
+    display: flex;
+    position: absolute;
+    left: -90px;
+    top: 300px;
+    
+}
+
+@keyframes fly {
+    0% {
+        top: 300px;
+    }
+
+    100% {
+        top: -500%;
+    }
+}

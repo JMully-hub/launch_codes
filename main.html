@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <title>Jude</title>
+</head>
+<body class="pageGrid"> 
+    <div class="top">
+        <h3>Launch codes</h3> 
+        <p>Solve the puzzles to launch the rocket!</p>
+    </div>
+
+    <div class="sumsArea">
+        <div id="countDownTimer_container">
+            <p id="countDownTimer_p"></p>
+        </div>
+        <div class=sumLine id="line0"></div>
+        <div class=sumLine id="line1"></div>
+        <div class=sumLine id="line2"></div>
+        <div class=sumLine id="line3"></div>
+    </div>
+
+<div class="codeArea">
+    <img id="rocket" class="rocket launch">
+    <div class="codeOutput_container">
+        <p class="codeOutput" id="line0_code_output">-</p>
+        <p class="codeOutput" id="line1_code_output">-</p>
+        <p class="codeOutput" id="line2_code_output">-</p>
+        <p class="codeOutput" id="line3_code_output">-</p>
+    </div>
+    <button id="launch_button" disabled>Launch</button>
+</div>
+
+
+    <div class="bottom">
+        <h3>Mummy Settings</h3>
+        <form action="#"  id="settings" autocomplete="off" onsubmit="return false">
+            <label for="maxNumber">Max Number</label>
+            <input title="Enter a number 2 or above" type="number" name="maxNumber" id="maxNumber">
+            <p></p>
+            <input class='checkbox' type="checkbox" id="add_check" name="add_check" value="+">
+            <label for="add_check"> Add</label><br><br>
+            <input class='checkbox' type="checkbox" id="minus_check" name="minus_check" value="-">
+            <label for="minus_check"> Subtract</label><br><br>
+            <input class='checkbox' type="checkbox" id="multiply_check" name="multiply_check" value="×">
+            <label for="multiply_check"> Multiply</label><br><br>
+            <p></p>
+            <button type="submit" id="generate" disabled>Generate</button>
+        </form>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+<footer>
+    <p>by Mully | </p>
+    <img class="githubLogo" src="GitHub-Mark-32px.png">
+    <a href="https://github.com/JMully-hub/TOP_Calculator"> JMully</a>
+</footer>
+</html>
