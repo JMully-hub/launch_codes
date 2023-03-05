@@ -12,9 +12,9 @@ const childsNameInput = document.getElementById('childNameInput');
 const childName_p = document.getElementById('childName_p');
 
 var siteWidth = 1280;
-var scale = screen.height /siteWidth;
+var scale = screen.height / siteWidth;
 
-document.querySelector('meta[name="viewport"]').setAttribute('content', 'width='+siteWidth+', initial-scale='+scale+'');
+document.querySelector('meta[name="viewport"]').setAttribute('content', `width=device-width, initial-scale=${scale}`);
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -164,7 +164,7 @@ function getRandom(min, max) {
 }
 
 
-function mathsEquations(lineNumber, layoutFormat, operatorList){
+function mathsEquations(lineNumber, operatorList){
     let operator = operatorList[lineNumber];
     let var_a = null;
     let var_b = null;
@@ -249,7 +249,7 @@ function makeSums(){
        
     // work out maths values
     for (let index = 0; index < 4; index++) {
-        mathsEquations(index, layoutArray[index], operatorList)
+        mathsEquations(index, operatorList)
     }
 
     // append layouts to DOM
@@ -261,7 +261,7 @@ function makeSums(){
     let generatedBoxes = document.getElementsByClassName('numInput');
     for (let i = 0; i < generatedBoxes.length; i++) {
         generatedBoxes[i].addEventListener('keydown', function(e) {
-            if (e.which === 38 || e.which === 40) {
+            if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
                 e.preventDefault();
             }})
         
@@ -345,8 +345,26 @@ window.onload = function(){
         }
     });
 
+    document.getElementById('sumsArea').addEventListener('keyup', (e) =>{
+        if(e.key === 'Enter' && !launchButton.disabled){
+            if (launchButton.getAttribute('disabled') === null){
+                for (let i = 0; i < sumLines.length; i++) {
+                    sumLines[i].setAttribute('style', 'display:none;')
+                }
+                startCountdown();
+                countDownDisplay();
+            }
+        }
+    });
+
 
     settingsForm.addEventListener('submit', () =>{
+        let codeOutputs = document.getElementsByClassName('codeOutput');
+        for (let i = 0; i < codeOutputs.length; i++) {
+            codeOutputs[i].setAttribute('style', 'color: #d12323;text-shadow: 0 0 5px #b84440;border: 5px solid #d12323;');
+            codeOutputs[i].innerText = '-';
+        }
+        launchButton.setAttribute('disabled', '')
         sumsObj = {
             line0_a: null, line0_b: null, line0_c: null, line0_op:null, line0_Ans: null,
             line1_a: null, line1_b: null, line1_c: null, line1_op:null, line1_Ans: null,

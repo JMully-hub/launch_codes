@@ -8,13 +8,15 @@ body{
     font-family: 'Bungee', cursive;
     background: no-repeat center center fixed;
     background-image: radial-gradient(#fdfdfd, #3e3f55);
-
+    
   
 }
 
+
 .pageGrid{
+
     display: grid;
-    width: 100vw; 
+    width: 1280px; 
     min-width: 630px;
     grid-template-rows: 70px 400px 350px auto;
     grid-template-areas:
