@@ -25,6 +25,7 @@
 
 <div class="codeArea">
     <img id="rocket" class="rocket launch">
+    <p id="childName_p" class="childName"></p>
     <div class="codeOutput_container">
         <p class="codeOutput" id="line0_code_output">-</p>
         <p class="codeOutput" id="line1_code_output">-</p>
@@ -46,7 +47,9 @@
             <input class='checkbox' type="checkbox" id="minus_check" name="minus_check" value="-">
             <label for="minus_check"> Subtract</label><br><br>
             <input class='checkbox' type="checkbox" id="multiply_check" name="multiply_check" value="×">
-            <label for="multiply_check"> Multiply</label><br><br>
+            <label for="multiply_check"> Multiply</label><br><br><br>
+            <label for="childNameInput"> Child's Name:</label>
+            <input title="Child's Name" type="text" name="childNameInput" id="childNameInput">
             <p></p>
             <button type="submit" id="generate" disabled>Generate</button>
         </form>

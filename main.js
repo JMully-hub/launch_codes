@@ -8,7 +8,8 @@ const settingsForm = document.getElementById('settings');
 const settingsButton = document.getElementById('generate');
 const maxNumberInput = document.getElementById('maxNumber');
 const sumLines = document.getElementsByClassName('sumLine');
-
+const childsNameInput = document.getElementById('childNameInput');
+const childName_p = document.getElementById('childName_p');
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -18,7 +19,8 @@ const startCountdown = async () => {
     await delay(6100);
     rocket.setAttribute('src', 'rocket2.webp');
     rocketNoise.play();
-    rocket.style.animation = "fly 10s 0.5s ease-in";
+    rocket.style.animation = "flyRocket 10s 0.5s ease-in";
+    childName_p.style.animation = "flyName 10s 0.5s ease-in";
     await delay(10500);
     launchButton.removeAttribute('disabled');
   };
@@ -285,6 +287,7 @@ window.onload = function(){
     rocket.addEventListener("animationend", () =>{
         rocket.setAttribute('src', 'rocket1.webp');
         rocket.style.animation = "";
+        childName_p.style.animation = "";
         countDownTimerContainer.style.display = 'none';
         for (let i = 0; i < sumLines.length; i++) {
             sumLines[i].setAttribute('style', 'display:flex;')
@@ -332,6 +335,9 @@ window.onload = function(){
         if(formComplete){
             settingsButton.removeAttribute('disabled')
         };
+        if(childsNameInput.value){
+            childName_p.innerHTML = 'Captain<br>' + childsNameInput.value;
+        }
     });
 
 
