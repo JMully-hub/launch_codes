@@ -84,6 +84,7 @@ function appendLayouts(lineNumber, layoutFormat){
             position_a.setAttribute('type', 'number')
             position_a.setAttribute('id', `line${lineNumber}_numInput`);
             position_a.setAttribute('class', 'numInput');
+            position_a.setAttribute('autocomplete', 'off');
 
             operator_position = parentElement.appendChild(document.createElement("p"));
             operator_position.setAttribute('id', `line${lineNumber}_operator`);
@@ -115,6 +116,7 @@ function appendLayouts(lineNumber, layoutFormat){
             position_b.setAttribute('type', 'number')
             position_b.setAttribute('id', `line${lineNumber}_numInput`);
             position_b.setAttribute('class', 'numInput');
+            position_b.setAttribute('autocomplete', 'off');
 
             parentElement.appendChild(document.createElement("p")).innerText = '=';
 
@@ -144,6 +146,7 @@ function appendLayouts(lineNumber, layoutFormat){
             position_c.setAttribute('type', 'number')
             position_c.setAttribute('id', `line${lineNumber}_numInput`);
             position_c.setAttribute('class', 'numInput');
+            position_c.setAttribute('autocomplete', 'off');
             break;
     }
 }
@@ -204,7 +207,6 @@ function mathsEquations(lineNumber, layoutFormat, operatorList){
             var_b = answer / var_a;
             break;
     }
-    console.log(`${var_a} ${operator} ${var_b} = ${answer}`)
 
     sumsObj[`line${lineNumber}_a`] = var_a;
     sumsObj[`line${lineNumber}_b`] = var_b;
@@ -248,19 +250,32 @@ function makeSums(){
         appendLayouts(index, layoutArray[index])
     }
 
-
+    // remove key scrolling from num input boxes
+    let generatedBoxes = document.getElementsByClassName('numInput');
+    for (let i = 0; i < generatedBoxes.length; i++) {
+        generatedBoxes[i].addEventListener('keydown', function(e) {
+            if (e.which === 38 || e.which === 40) {
+                e.preventDefault();
+            }})
+        
+    }
     
+        
 }
 
 function checkCorrectAnswers(){
     for (let i = 0; i < 4; i++) {
         if(sumsObj[`line${i}_Ans`] === null){
+        launchButton.setAttribute('disabled', '')
         return;
         }
     }
     launchButton.removeAttribute('disabled');
 }
   
+
+
+
 window.onload = function(){
 
     rocket.setAttribute('src', 'rocket1.webp');
@@ -285,12 +300,13 @@ window.onload = function(){
             if(sumsObj[`${div_id}_${layout}`] == e.target.value){
                 e.target.setAttribute('style', 'background-color:lightgreen;')
                 sumsObj[`${div_id}_Ans`] = true;
-                document.getElementById(`${div_id}_code_output`).setAttribute('style', 'background-color:lightgreen;');
+                
+                document.getElementById(`${div_id}_code_output`).setAttribute('style', 'color: #228b22;text-shadow: 0 0 5px #40b85a;border: 5px solid #0cdd39;');
                 document.getElementById(`${div_id}_code_output`).innerText = e.target.value;
             }else{
                 e.target.setAttribute('style', 'background-color:white;')
                 sumsObj[`${div_id}_Ans`] = null;
-                document.getElementById(`${div_id}_code_output`).setAttribute('style', 'background-color:background-color: #5c596e;');
+                document.getElementById(`${div_id}_code_output`).setAttribute('style', 'color: #d12323;text-shadow: 0 0 5px #b84440;border: 5px solid #d12323;');
                 document.getElementById(`${div_id}_code_output`).innerText = '-';
             }
             checkCorrectAnswers();
