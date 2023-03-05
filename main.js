@@ -12,7 +12,7 @@ const childsNameInput = document.getElementById('childNameInput');
 const childName_p = document.getElementById('childName_p');
 
 var siteWidth = 1280;
-var scale = screen.width /siteWidth;
+var scale = screen.height /siteWidth;
 
 document.querySelector('meta[name="viewport"]').setAttribute('content', 'width='+siteWidth+', initial-scale='+scale+'');
 
