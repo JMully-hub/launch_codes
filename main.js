@@ -38,7 +38,7 @@ const countDownDisplay = async () => {
         countDownTimerText.innerText = index
         await delay(1100);
     }
-    countDownTimerText.innerText = 'Take Off'
+    countDownTimerText.innerText = 'Lift Off'
     
   };
 
