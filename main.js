@@ -392,7 +392,7 @@ window.onload = function(){
     });
 
 
-    settingsForm.addEventListener('submit', () =>{
+    document.getElementById('generate').addEventListener('mousedown', () =>{
         let codeOutputs = document.getElementsByClassName('codeOutput');
         for (let i = 0; i < codeOutputs.length; i++) {
             codeOutputs[i].setAttribute('style', 'color: #d12323;text-shadow: 0 0 5px #b84440;border: 5px solid #d12323;');
