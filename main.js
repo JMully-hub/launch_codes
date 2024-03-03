@@ -44,7 +44,7 @@ const countDownDisplay = async () => {
 
 function checkForm(){
     let maxNumber = maxNumberInput.value;
-    if(maxNumber<2 | isNaN(maxNumber)){
+    if(maxNumber<10 | isNaN(maxNumber)){
         document.getElementById('maxNumber').setAttribute('style', 'background-color: #e05b56;');
         return;
     }else{
@@ -60,7 +60,7 @@ function checkBoxInfo(){
     let checkBoxes = document.getElementsByClassName('checkbox');
     let checkBoxSelected = []
     for (let index = 0; index < checkBoxes.length; index++) {
-        if(checkBoxes[index].checked){
+        if(checkBoxes[index].checked && checkBoxes[index].id !== "random_blanks"){
             checkBoxSelected.push(checkBoxes[index].value)
         }
     }
@@ -82,7 +82,6 @@ function appendLayouts(lineNumber, layoutFormat){
     let position_c = null;
     let operator_position = null;
     switch(layoutFormat){
-
         case 0:
             parentElement = document.getElementById(`line${lineNumber}`)
             parentElement.setAttribute('layout', 'a');
@@ -171,6 +170,7 @@ function mathsEquations(lineNumber, operatorList){
     let answer = null;
     let min = null;
     let max = null;
+    let hasFactors = false;
 
     switch(operator){
         case "+":
@@ -198,7 +198,6 @@ function mathsEquations(lineNumber, operatorList){
             break;
         case "×":
             // make sure number is not prime and has factors
-            let hasFactors = false;
             while (!hasFactors) {
                 min = Math.floor(maxNumber.value / 2) + 1;
                 max = maxNumber.value;
@@ -213,14 +212,38 @@ function mathsEquations(lineNumber, operatorList){
             }
             var_b = answer / var_a;
             break;
+        case "÷":
+            // make sure number is not prime and has factors
+            while (!hasFactors) {
+                min = Math.floor(maxNumber.value / 2) + 1;
+                max = maxNumber.value;
+                var_a = getRandom(min, max);
+                for(let factor = 2; factor < var_a; factor++) {
+                    if(var_a % factor == 0) {
+                        hasFactors = true;
+                        var_b = factor;
+                        break;
+                    }
+                }
+            }
+            answer = var_a / var_b;
+            break;
     }
-
     sumsObj[`line${lineNumber}_a`] = var_a;
     sumsObj[`line${lineNumber}_b`] = var_b;
     sumsObj[`line${lineNumber}_c`] = answer;
     sumsObj[`line${lineNumber}_op`] = operator;
+}
 
-
+function checkSumExists(index){
+    for (let checkIndex = 0; checkIndex < 4; checkIndex++) {
+        if(checkIndex !== index){
+            if(sumsObj[`line${checkIndex}_a`] === sumsObj[`line${index}_a`] && sumsObj[`line${checkIndex}_b`] === sumsObj[`line${index}_b`] && sumsObj[`line${checkIndex}_c`] === sumsObj[`line${index}_c`]){
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 function makeSums(){
@@ -241,21 +264,32 @@ function makeSums(){
             // choose random checkbox operator from checked boxes
             operatorList.push(operatorList[Math.floor(Math.random()*validIndex.length)])
         }};
-
-    // chose random layout, 1 text entry box per sum, either in position 1, 2 or 3 (1 + 2 = 3) 
+    
+    let randomPositions = document.getElementById("random_blanks");
     let layoutArray = [] // index 0 is 1st line, index 1 is second line etc
-    for (let index = 0; index < 4; index++) {
-        layoutArray.push(Math.floor(Math.random()*3))};
-       
+    if(randomPositions.checked){
+        // chose random layout, 1 text entry box per sum, either in position 1, 2 or 3 (1 + 2 = 3) 
+        for (let index = 0; index < 4; index++) {
+            layoutArray.push(Math.floor(Math.random()*3))};
+    }else{
+        layoutArray = [2,2,2,2]
+    }
     // work out maths values
     for (let index = 0; index < 4; index++) {
         mathsEquations(index, operatorList)
+        let sumExists = checkSumExists(index);
+        while(sumExists === true){
+            mathsEquations(index, operatorList);
+            sumExists = checkSumExists(index);
+        }
     }
+    
 
     // append layouts to DOM
     for (let index = 0; index < 4; index++) {
         appendLayouts(index, layoutArray[index])
     }
+    
 
     // remove key scrolling from num input boxes
     let generatedBoxes = document.getElementsByClassName('numInput');

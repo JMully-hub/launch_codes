@@ -37,17 +37,21 @@
 
 
     <div class="bottom">
-        <h3>Mummy Settings</h3>
+        <h3>Settings</h3>
         <form action="#"  id="settings" autocomplete="off" onsubmit="return false">
             <label for="maxNumber">Max Number</label>
-            <input title="Enter a number 2 or above" type="number" name="maxNumber" id="maxNumber">
+            <input title="Enter a number 10 or above" type="number" name="maxNumber" id="maxNumber" min=10><br><br>
+            <input class='checkbox' type="checkbox" id="random_blanks" name="random_blanks" value="random">
+            <label for="random_blanks"> Randomize Blank Box Positions</label><br><br>
             <p></p>
             <input class='checkbox' type="checkbox" id="add_check" name="add_check" value="+">
             <label for="add_check"> Add</label><br><br>
             <input class='checkbox' type="checkbox" id="minus_check" name="minus_check" value="-">
             <label for="minus_check"> Subtract</label><br><br>
             <input class='checkbox' type="checkbox" id="multiply_check" name="multiply_check" value="×">
-            <label for="multiply_check"> Multiply</label><br><br><br>
+            <label for="multiply_check"> Multiply</label><br><br>
+            <input class='checkbox' type="checkbox" id="divide_check" name="divide_check" value="÷">
+            <label for="divide_check"> Divide</label><br><br><br>
             <label for="childNameInput"> Child's Name:</label>
             <input title="Child's Name" type="text" name="childNameInput" id="childNameInput">
             <p></p>
